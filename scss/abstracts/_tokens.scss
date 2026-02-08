@@ -1,0 +1,43 @@
+/* colors */
+$color-white: hsl(0, 100%, 100%);
+$color-black: hsl(0, 0%, 0%);
+$color-green-900: hsl(183, 100%, 15%);
+$color-green-800: hsl(183, 85%, 21%);
+$color-green-750: hsl(183, 79%, 24%);
+$color-green-400: hsl(172, 67%, 45%);
+$color-green-200: hsl(173, 61%, 77%);
+$color-grey-600: hsl(180, 25%, 32%);
+$color-grey-550: hsl(180, 18%, 40%);
+$color-grey-500: hsl(186, 14%, 43%);
+$color-grey-400: hsl(184, 14%, 56%);
+$color-grey-300: hsl(184, 19%, 68%);
+$color-grey-200: hsl(185, 41%, 84%);
+$color-grey-50: hsl(189, 47%, 97%);
+$color-orange-400: hsl(13, 70%, 60%);
+
+/* fonts */
+$font-space-mono: 'Space Mono', monospace;
+$fw-bold: 700;
+
+/* spacing */
+$space-100: 0.5rem;
+$space-200: 1rem;
+$space-300: 1.5rem;
+$space-400: 2rem;
+$space-500: 2.5rem;
+$space-600: 3rem;
+$space-1000: 5rem;
+$space-1200: 6rem;
+$space-1500: 7.5rem;
+$space-1600: 8rem;
+
+/* breakpoints */
+$bp-sm: 23.4375rem;
+$bp-md: 48rem;
+$bp-lg: 64rem;
+$bp-xl: 90rem;
+
+$content-max-width: $bp-xl;
+
+/* common values */
+$card-border-radius: 0.9375rem;

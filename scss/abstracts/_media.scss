@@ -1,0 +1,31 @@
+@use 'tokens' as *;
+
+@mixin from-mobile {
+  @media (min-width: $bp-sm) {
+    @content;
+  }
+}
+
+@mixin from-tablet {
+  @media (min-width: $bp-md) {
+    @content;
+  }
+}
+
+@mixin from-desktop {
+  @media (min-width: $bp-lg) {
+    @content;
+  }
+}
+
+@mixin from-desktop-xl {
+  @media (min-width: $bp-xl) {
+    @content;
+  }
+}
+
+@mixin supports-hover {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
