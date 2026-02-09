@@ -21,83 +21,86 @@
   </header>
   <main class="calculator">
     <form class="calculator__form">
-      <div class="field">
-        <label class="field__label" for="bill">Bill</label>
-        <div class="field__control">
-          <img class="field__icon" src="./images/icon-dollar.svg" alt="">
-          <input class="field__input" id="bill" type="number">
+      <div class="calculator__controls">
+        <div class="field">
+          <label class="field__label" for="bill">Bill</label>
+          <div class="field__control">
+            <img class="field__icon" src="./images/icon-dollar.svg" alt="">
+            <input class="field__input" id="bill" type="number" min="0" placeholder="0">
+          </div>
         </div>
-      </div>
 
-      <fieldset class="tip-selector">
-        <legend class="tip-selector__legend">Select Tip %</legend>
+        <fieldset class="tip-selector">
+          <legend class="tip-selector__legend">Select Tip %</legend>
+          <div class="tip-selector__grid">
+            <label class="tip-selector__radio">
+              <input type="radio" name="tip" value="5">
+              5%
+            </label>
+            <label class="tip-selector__radio">
+              <input type="radio" name="tip" value="10">
+              10%
+            </label>
+            <label class="tip-selector__radio">
+              <input type="radio" name="tip" value="15">
+              15%
+            </label>
+            <label class="tip-selector__radio">
+              <input type="radio" name="tip" value="25">
+              25%
+            </label>
+            <label class="tip-selector__radio">
+              <input type="radio" name="tip" value="50">
+              50%
+            </label>
+            <div class="tip-selector__custom">
+              <label class="tip-selector__radio">
+                <input type="radio" name="tip" value="custom">
+                Custom
+              </label>
+              <div class="field">
+                <div class="field__control">
+                  <input class="field__input" id="custom-tip" name="custom-tip" type="number" min="0" max="100"
+                    placeholder="%">
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
 
-        <div class="tip-selector__grid">
-          <label class="tip-selector__radio">
-            <input type="radio" name="tip" value="5">
-            5%
-          </label>
-
-          <label class="tip-selector__radio">
-            <input type="radio" name="tip" value="10">
-            10%
-          </label>
-
-          <label class="tip-selector__radio">
-            <input type="radio" name="tip" value="15">
-            15%
-          </label>
-
-          <label class="tip-selector__radio">
-            <input type="radio" name="tip" value="25">
-            25%
-          </label>
-
-          <label class="tip-selector__radio">
-            <input type="radio" name="tip" value="50">
-            50%
-          </label>
-
-          <label class="tip-selector__radio tip-selector__radio--custom">
-            <input type="radio" name="tip" value="custom">
-            <span>Custom</span>
-            <input class="tip-selector__custom-input" type="number" name="tip-custom" min="0" max="100" placeholder="%">
-          </label>
-        </div>
-      </fieldset>
-
-      <div class="field">
-        <label for="people">Number of People</label>
-        <div class="field__control">
-          <img class="field__icon" src="./images/icon-person.svg" alt="">
-          <input class="field__input" name="people" type="number">
+        <div class="field">
+          <label class="field__label" for="people">Number of People</label>
+          <div class="field__control">
+            <img class="field__icon" src="./images/icon-person.svg" alt="">
+            <input class="field__input" id="people" name="people" type="number" min="0" placeholder="0">
+          </div>
         </div>
       </div>
 
       <section class="results">
-        <dl class="results__list">
-          <div class="results__item">
-            <dt class="results__label">
-              Tip Amount
-              <span class="results__sublabel">/ person</span>
-            </dt>
-            <dd class="results__value">
-              <output id="tip-per-person">$0.00</output>
-            </dd>
-          </div>
-
-          <div class="results__item">
-            <dt class="results__label">
-              Total
-              <span class="results__sublabel">/ person</span>
-            </dt>
-            <dd class="results__value">
-              <output id="total-per-person">$0.00</output>
-            </dd>
-          </div>
-        </dl>
-
-        <button class="results__reset" type="reset">Reset</button>
+        <div class="results__panel">
+          <dl class="results__list">
+            <div class="results__item">
+              <dt class="results__label">
+                Tip Amount
+                <span class="results__sublabel">/ person</span>
+              </dt>
+              <dd class="results__value">
+                <output id="tip-per-person">$0.00</output>
+              </dd>
+            </div>
+            <div class="results__item">
+              <dt class="results__label">
+                Total
+                <span class="results__sublabel">/ person</span>
+              </dt>
+              <dd class="results__value">
+                <output id="total-per-person">$0.00</output>
+              </dd>
+            </div>
+          </dl>
+          <button class="results__reset" type="reset">Reset</button>
+        </div>
       </section>
     </form>
   </main>

@@ -1,0 +1,77 @@
+@use '../abstracts/' as *;
+
+.tip-selector {
+  &__legend {
+    @include text-preset(5);
+    margin-bottom: $space-100;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-200;
+  }
+
+  &__radio {
+    @include text-preset(3);
+    display: grid;
+    place-items: center;
+    background: $color-green-900;
+    color: $color-white;
+    border-radius: $input-border-radius;
+    height: $input-height;
+    cursor: pointer;
+
+    &:hover {
+      background: $color-green-200;
+      color: $color-green-900;
+    }
+
+    &:has(:checked) {
+      background: $color-green-400;
+      color: $color-green-900;
+    }
+
+    &:has(:focus-visible) {
+      outline: none;
+      box-shadow: $outline-box-shadow;
+    }
+
+    input {
+      appearance: none;
+      position: absolute;
+      opacity: 0;
+    }
+  }
+
+  &__custom {
+    .tip-selector__radio {
+      background: $color-grey-50;
+      color: $color-grey-550;
+
+      &:hover {
+        background: $color-grey-50;
+        color: $color-grey-550;
+      }
+    }
+
+    .field {
+      display: none;
+
+      &__input {
+        text-align: center;
+        padding-inline: $space-200;
+      }
+    }
+
+    &:has(:checked) {
+      .tip-selector__radio {
+        display: none;
+      }
+
+      .field {
+        display: block;
+      }
+    }
+  }
+}

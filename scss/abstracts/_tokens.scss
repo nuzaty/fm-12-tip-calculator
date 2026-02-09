@@ -2,6 +2,7 @@
 $color-white: hsl(0, 100%, 100%);
 $color-black: hsl(0, 0%, 0%);
 $color-green-900: hsl(183, 100%, 15%);
+$color-green-900-35: hsl(183 100% 15% / 0.35);
 $color-green-800: hsl(183, 85%, 21%);
 $color-green-750: hsl(183, 79%, 24%);
 $color-green-400: hsl(172, 67%, 45%);
@@ -40,4 +41,8 @@ $bp-xl: 90rem;
 $content-max-width: $bp-xl;
 
 /* common values */
-$card-border-radius: 0.9375rem;
+$input-height: 3rem;
+$input-border-radius: 0.3125rem;
+$outline-box-shadow:
+  0 0 0 2px $color-white,
+  0 0 0 4px $color-green-400;

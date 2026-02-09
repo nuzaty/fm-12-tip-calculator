@@ -14,10 +14,10 @@
  * ------------------------------------------------ */
 $text-presets: (
   1: (
-    base: text-token($font-space-mono, 3rem, $fw-bold, 1.4792, 0.02083em),
+    base: text-token($font-space-mono, 3rem, $fw-bold, 1.4792, -0.02083em),
   ),
   2: (
-    base: text-token($font-space-mono, 2rem, $fw-bold, 1.4688, 0.02093em),
+    base: text-token($font-space-mono, 2rem, $fw-bold, 1.4688, -0.02093em),
   ),
   3: (
     base: text-token($font-space-mono, 1.5rem, $fw-bold, 1.5),

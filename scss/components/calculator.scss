@@ -1,0 +1,23 @@
+@use '../abstracts/' as *;
+
+.calculator {
+  $border-radius-size: 1.5625rem; // match Figma
+  background: $color-white;
+  flex: 1;
+  padding-block: $space-400;
+  padding-inline: $space-300;
+  border-radius: $border-radius-size $border-radius-size 0px 0px;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: $space-400;
+  }
+
+  &__controls {
+    display: flex;
+    flex-direction: column;
+    gap: $space-400;
+    margin-inline: $space-100;
+  }
+}

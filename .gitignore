@@ -23,7 +23,9 @@ npm-debug.log*
 
 # Production
 /build
-/dist
+dist/*
+!dist/styles.css
+!dist/styles.css.map
 /.next
 /out
 

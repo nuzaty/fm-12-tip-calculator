@@ -1,0 +1,51 @@
+@use '../abstracts' as *;
+
+.field {
+  &__label {
+    @include text-preset(5);
+    display: block;
+    margin-bottom: $space-100;
+  }
+
+  &__control {
+    position: relative;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 1.125rem; // match Figma
+    transform: translateY(-50%);
+  }
+
+  &__input {
+    @include text-preset(3);
+    width: 100%;
+    height: $input-height;
+    text-align: right;
+    padding-block: $space-100;
+    padding-inline: $space-500 $space-200;
+    background: $color-grey-50;
+    color: $color-green-900;
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+
+    &::placeholder {
+      color: $color-green-900-35;
+    }
+
+    &:focus {
+      border: 2px solid $color-green-400;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+    & {
+      appearance: textfield;
+      -moz-appearance: textfield;
+    }
+  }
+}

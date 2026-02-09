@@ -1,0 +1,70 @@
+@use '../abstracts/' as *;
+
+.results {
+  background: $color-green-900;
+  border-radius: 0.9375rem; // match Figma
+  min-height: 16rem; // match Figma
+
+  display: grid;
+  align-items: center;
+  padding-inline: $space-300;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-300;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__label {
+    @include text-preset(5);
+    display: flex;
+    flex-direction: column;
+    color: $color-white;
+  }
+
+  &__sublabel {
+    @include text-preset(6);
+    color: $color-grey-400;
+  }
+
+  &__value {
+    @include text-preset(2);
+    color: $color-green-400;
+  }
+
+  &__reset {
+    @include text-preset(4);
+    display: grid;
+    place-items: center;
+    height: $input-height;
+    width: 100%;
+    background: $color-green-400;
+    color: $color-green-900;
+    border-radius: $input-border-radius;
+    margin-top: $space-400;
+    cursor: pointer;
+    text-transform: uppercase;
+
+    &:hover {
+      background: $color-green-200;
+      color: $color-green-900;
+    }
+
+    &:disabled {
+      background: $color-green-750;
+      color: $color-green-800;
+      cursor: not-allowed;
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: $outline-box-shadow;
+    }
+  }
+}
