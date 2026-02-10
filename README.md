@@ -28,6 +28,7 @@ Users should be able to:
 - [Sass (Dart Sass)](https://sass-lang.com/)
 - [BEM](https://getbem.com/)
 - JS
+- [JustValidate](https://just-validate.dev/)
 
 ### CSS build
 

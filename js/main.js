@@ -177,10 +177,12 @@ updateResetState();
 
 const { groupSep, decimalSep } = (() => {
   const parts = new Intl.NumberFormat(LOCALE).formatToParts(1234.5);
-  const group = parts.find(p => p.type === 'group')?.value || '';
-  const decimal = parts.find(p => p.type === 'decimal')?.value || '.';
-  return { group, decimal };
+  const groupSep = parts.find(p => p.type === 'group')?.value || '';
+  const decimalSep = parts.find(p => p.type === 'decimal')?.value || '.';
+  return { groupSep, decimalSep };
 })();
+
+console.log(decimalSep);
 
 function setupDecimalInput(input, {
   locale = navigator.language,
@@ -200,8 +202,11 @@ function setupDecimalInput(input, {
   }
 
   function normalize(value) {
-    value = value.replace(suffix, '');
+    console.log('before value', value);
+    // value = value.replace(suffix, '');
     value = value.replace(/[.,]/g, decimalSep);
+
+    console.log('after value', value);
 
     const regex = new RegExp(`[^0-9${decimalSep}]`, 'g');
     value = value.replace(regex, '');
@@ -279,7 +284,7 @@ function setupDecimalInput(input, {
   input.addEventListener('focus', removeFormat);
 }
 
-function getNumericValue(value, suffix, locale = LOCALE) {
+function getNumericValue(value, suffix) {
   if (!value) return null;
 
   value = value.replace(suffix, '');
