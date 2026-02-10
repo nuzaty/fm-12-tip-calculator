@@ -265,7 +265,7 @@ function setupDecimalInput(input, {
 
   function format() {
     let num = getNumericValue(input.value, suffix)
-    if (num == null) {
+    if (num === null) {
       input.value = '';
       return;
     }
