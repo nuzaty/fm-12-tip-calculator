@@ -63,6 +63,11 @@ body {
   margin-top: 3.125rem;
   margin-inline: auto;
 }
+@media (min-width: 64rem) {
+  .logo {
+    margin-top: 10.1875rem;
+  }
+}
 
 main {
   width: 100%;
@@ -80,6 +85,7 @@ main {
 @media (min-width: 64rem) {
   main {
     padding-inline: clamp(5rem, -22.692rem + 43.269vw, 16.25rem);
+    padding-top: 5.4913rem;
   }
 }
 
@@ -98,6 +104,12 @@ main {
     padding-inline: 4.719rem;
   }
 }
+@media (min-width: 64rem) {
+  .calculator {
+    padding-block: 2rem;
+    padding-inline: 2.5rem;
+  }
+}
 .calculator__form {
   display: flex;
   flex-direction: column;
@@ -106,6 +118,12 @@ main {
 @media (min-width: 48rem) {
   .calculator__form {
     gap: 2.5rem;
+  }
+}
+@media (min-width: 64rem) {
+  .calculator__form {
+    flex-direction: row;
+    gap: 3rem;
   }
 }
 .calculator__controls {
@@ -118,6 +136,13 @@ main {
   .calculator__controls {
     gap: 1.5rem;
     margin-inline: 0;
+  }
+}
+@media (min-width: 64rem) {
+  .calculator__controls {
+    justify-content: center;
+    gap: 2.5rem;
+    width: 45.12%;
   }
 }
 
@@ -289,6 +314,13 @@ main {
     padding-inline: 3rem;
   }
 }
+@media (min-width: 64rem) {
+  .results {
+    flex: 1;
+    min-height: 26.0625rem;
+    padding-inline: 2.5rem;
+  }
+}
 .results__list {
   display: flex;
   flex-direction: column;
@@ -297,6 +329,11 @@ main {
 @media (min-width: 48rem) {
   .results__list {
     gap: 0.5rem;
+  }
+}
+@media (min-width: 64rem) {
+  .results__list {
+    gap: 1.5rem;
   }
 }
 .results__item {
@@ -371,6 +408,11 @@ main {
 @media (min-width: 48rem) {
   .results__reset {
     margin-top: 1rem;
+  }
+}
+@media (min-width: 64rem) {
+  .results__reset {
+    margin-top: 8rem;
   }
 }
 .results__reset:hover {

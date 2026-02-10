@@ -17,6 +17,11 @@
     padding-inline: 4.719rem; // match Figma
   }
 
+  @include from-desktop {
+    padding-block: $space-400;
+    padding-inline: $space-500;
+  }
+
   &__form {
     display: flex;
     flex-direction: column;
@@ -24,6 +29,11 @@
 
     @include from-tablet {
       gap: $space-500;
+    }
+
+    @include from-desktop {
+      flex-direction: row;
+      gap: $space-600;
     }
   }
 
@@ -36,6 +46,12 @@
     @include from-tablet {
       gap: $space-300;
       margin-inline: 0;
+    }
+
+    @include from-desktop {
+      justify-content: center;
+      gap: $space-500;
+      width: 45.12%; // match Figma
     }
   }
 }

@@ -14,6 +14,12 @@
     padding-inline: $space-600;
   }
 
+  @include from-desktop {
+    flex: 1;
+    min-height: 26.0625rem;
+    padding-inline: $space-500;
+  }
+
   &__list {
     display: flex;
     flex-direction: column;
@@ -21,6 +27,10 @@
 
     @include from-tablet {
       gap: $space-100;
+    }
+
+    @include from-desktop {
+      gap: $space-300;
     }
   }
 
@@ -66,6 +76,10 @@
 
     @include from-tablet {
       margin-top: $space-200;
+    }
+
+    @include from-desktop {
+      margin-top: $space-1600;
     }
 
     &:hover {

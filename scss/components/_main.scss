@@ -16,5 +16,6 @@ main {
   @include from-desktop {
     // 80px @ 1024px to 260px @ 1440px (From Figma)
     padding-inline: clamp($space-1000, -22.692rem + 43.269vw, 16.25rem);
+    padding-top: 5.4913rem; // match Figma
   }
 }

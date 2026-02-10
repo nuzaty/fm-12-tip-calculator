@@ -52,4 +52,8 @@ body {
 .logo {
   margin-top: 3.125rem; // match Figma
   margin-inline: auto;
+
+  @include from-desktop {
+    margin-top: 10.1875rem; // match Figma
+  }
 }
