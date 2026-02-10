@@ -16,7 +16,7 @@
 
   @include from-desktop {
     flex: 1;
-    min-height: 26.0625rem;
+    min-height: 26.0625rem; // match Figma
     padding-inline: $space-500;
   }
 
