@@ -61,6 +61,13 @@
       &__input {
         text-align: center;
         padding-inline: $space-200;
+        background: $color-green-400;
+        color: $color-green-900;
+        border-radius: $input-border-radius;
+
+        &::placeholder {
+          color: $color-grey-200;
+        }
       }
     }
 

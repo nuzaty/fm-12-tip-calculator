@@ -26,7 +26,7 @@
           <label class="field__label" for="bill">Bill</label>
           <div class="field__control">
             <img class="field__icon" src="./images/icon-dollar.svg" alt="">
-            <input class="field__input" id="bill" type="number" min="0" placeholder="0">
+            <input class="field__input" id="bill" type="text" inputmode="decimal" placeholder="0">
           </div>
         </div>
 
@@ -60,7 +60,7 @@
               </label>
               <div class="field">
                 <div class="field__control">
-                  <input class="field__input" id="custom-tip" name="custom-tip" type="number" min="0" max="100"
+                  <input class="field__input" id="custom-tip" name="tip" type="text" inputmode="decimal"
                     placeholder="%">
                 </div>
               </div>
@@ -72,7 +72,8 @@
           <label class="field__label" for="people">Number of People</label>
           <div class="field__control">
             <img class="field__icon" src="./images/icon-person.svg" alt="">
-            <input class="field__input" id="people" name="people" type="number" min="0" placeholder="0">
+            <input class="field__input" id="people" name="people" type="number" inputmode="numeric" min="0"
+              placeholder="0">
           </div>
         </div>
       </div>

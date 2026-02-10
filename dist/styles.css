@@ -199,6 +199,12 @@ body {
 .tip-selector__custom .field__input {
   text-align: center;
   padding-inline: 1rem;
+  background: hsl(172, 67%, 45%);
+  color: hsl(183, 100%, 15%);
+  border-radius: 0.3125rem;
+}
+.tip-selector__custom .field__input::placeholder {
+  color: hsl(185, 41%, 84%);
 }
 .tip-selector__custom:has(:checked) .tip-selector__radio {
   display: none;
