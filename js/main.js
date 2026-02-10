@@ -69,14 +69,45 @@ setupDecimalInput(peopleInput, {
   onChange: updateTip
 });
 
+/* Validation rule */
+
+const PEOPLE_ERR_MSG = 'Can’t be zero';
+
+const form = document.getElementById('form');
+const validator = new window.JustValidate(form, {
+  validateBeforeSubmitting: true,
+});
+
+validator
+  .addField('#people', [
+    {
+      rule: 'minNumber',
+      value: 1,
+      errorMessage: PEOPLE_ERR_MSG,
+    },
+  ], {
+    errorsContainer: document.querySelector('#people-field .error-msg'),
+    errorFieldCssClass: ['is-error'],
+    errorLabelStyle: {},
+  });
+
 /* Tip calculation logic */
 
-function calculateTip() {
+function getInputValue() {
   const bill = getNumericValue(billInput.value);
   const tipPercent = getTipPercent();
   const people = getNumericValue(peopleInput.value);
 
-  if (!bill || !tipPercent || !people) {
+  return { bill, tipPercent, people };
+}
+
+function calculateTip() {
+  const { bill, tipPercent, people } = getInputValue();
+
+  if (!bill
+    || !tipPercent
+    || !people
+    || people === 0) {
     return { tipPerPerson: 0, totalPerPerson: 0 };
   }
 
@@ -113,7 +144,43 @@ function getTipPercent() {
   return Number(value);
 }
 
-/* Utility function */
+/* Reset button logic */
+
+const resetBtn = document.querySelector('.results__reset');
+
+function updateResetState() {
+  const { bill, tipPercent, people } = getInputValue();
+
+  function isInvalid(value) {
+    return (
+      value === null ||
+      value === undefined ||
+      Number.isNaN(value)
+    );
+  }
+
+  resetBtn.disabled = isInvalid(bill)
+    && isInvalid(tipPercent)
+    && isInvalid(people);
+}
+
+form.addEventListener('input', updateResetState);
+form.addEventListener('change', updateResetState);
+form.addEventListener('reset', () => {
+  setTimeout(updateResetState, 0);
+  validator.refresh();
+});
+
+updateResetState();
+
+/* Utility logic / function */
+
+const { groupSep, decimalSep } = (() => {
+  const parts = new Intl.NumberFormat(LOCALE).formatToParts(1234.5);
+  const group = parts.find(p => p.type === 'group')?.value || '';
+  const decimal = parts.find(p => p.type === 'decimal')?.value || '.';
+  return { group, decimal };
+})();
 
 function setupDecimalInput(input, {
   locale = navigator.language,
@@ -125,7 +192,6 @@ function setupDecimalInput(input, {
   onChange = null,
   onBlur = null
 } = {}) {
-  const decimalSep = getNumberSeparators(locale).decimalSep;
 
   function clamp(num) {
     if (num < min) return min;
@@ -219,8 +285,6 @@ function getNumericValue(value, suffix, locale = LOCALE) {
   value = value.replace(suffix, '');
   value = value.trim();
 
-  const { groupSep, decimalSep } = getNumberSeparators(locale);
-
   const groupRegex = new RegExp(`\\${groupSep}`, 'g');
   value = value.replace(groupRegex, '');
 
@@ -229,13 +293,4 @@ function getNumericValue(value, suffix, locale = LOCALE) {
 
   const num = parseFloat(value);
   return isNaN(num) ? null : num;
-}
-
-function getNumberSeparators(locale = LOCALE) {
-  const parts = new Intl.NumberFormat(locale).formatToParts(1234.5);
-
-  const groupSep = parts.find(p => p.type === 'group')?.value || '';
-  const decimalSep = parts.find(p => p.type === 'decimal')?.value || '.';
-
-  return { groupSep, decimalSep };
 }

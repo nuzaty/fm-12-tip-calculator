@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./dist/styles.css">
+  <script defer src="./js/just-validate.min.js"></script>
   <script defer src="./js/main.js"></script>
 
   <title>Frontend Mentor | Tip calculator app</title>
@@ -20,7 +21,7 @@
     <img class="logo" src="./images/logo.svg" atl="Logo">
   </header>
   <main class="calculator">
-    <form class="calculator__form">
+    <form id="form" class="calculator__form">
       <div class="calculator__controls">
         <div class="field">
           <label class="field__label" for="bill">Bill</label>
@@ -68,8 +69,9 @@
           </div>
         </fieldset>
 
-        <div class="field">
+        <div class="field" id="people-field">
           <label class="field__label" for="people">Number of People</label>
+          <div class="error-msg"></div>
           <div class="field__control">
             <img class="field__icon" src="./images/icon-person.svg" alt="">
             <input class="field__input" id="people" name="people" type="number" inputmode="numeric" min="0"

@@ -1,6 +1,8 @@
 @use '../abstracts' as *;
 
 .field {
+  position: relative;
+
   &__label {
     @include text-preset(5);
     display: block;
@@ -28,6 +30,7 @@
     background: $color-grey-50;
     color: $color-green-900;
     border: 2px solid transparent;
+    border-radius: $input-border-radius;
     outline: none;
     cursor: pointer;
 
@@ -35,6 +38,7 @@
       color: $color-green-900-35;
     }
 
+    &:hover,
     &:focus {
       border: 2px solid $color-green-400;
     }
@@ -47,5 +51,17 @@
       appearance: textfield;
       -moz-appearance: textfield;
     }
+
+    &.is-error {
+      border: 2px solid $color-orange-400;
+    }
+  }
+
+  .error-msg {
+    @include text-preset(5);
+    color: $color-orange-400;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }

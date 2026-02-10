@@ -84,6 +84,9 @@ body {
   margin-inline: 0.5rem;
 }
 
+.field {
+  position: relative;
+}
 .field__label {
   /* base (mobile) */
   font-family: "Space Mono", monospace;
@@ -120,13 +123,14 @@ body {
   background: hsl(189, 47%, 97%);
   color: hsl(183, 100%, 15%);
   border: 2px solid transparent;
+  border-radius: 0.3125rem;
   outline: none;
   cursor: pointer;
 }
 .field__input::placeholder {
   color: hsla(183, 100%, 15%, 0.35);
 }
-.field__input:focus {
+.field__input:hover, .field__input:focus {
   border: 2px solid hsl(172, 67%, 45%);
 }
 .field__input::-webkit-outer-spin-button, .field__input::-webkit-inner-spin-button {
@@ -135,6 +139,22 @@ body {
 .field__input {
   appearance: textfield;
   -moz-appearance: textfield;
+}
+.field__input.is-error {
+  border: 2px solid hsl(13, 70%, 60%);
+}
+.field .error-msg {
+  /* base (mobile) */
+  font-family: "Space Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  /* tablet override (optional) */
+  /* desktop override (optional) */
+  color: hsl(13, 70%, 60%);
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .tip-selector__legend {
