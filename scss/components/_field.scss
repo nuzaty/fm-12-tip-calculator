@@ -34,6 +34,14 @@
     outline: none;
     cursor: pointer;
 
+    appearance: textfield;
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
     &::placeholder {
       color: $color-green-900-35;
     }
@@ -41,15 +49,6 @@
     &:hover,
     &:focus {
       border: 2px solid $color-green-400;
-    }
-
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-    }
-    & {
-      appearance: textfield;
-      -moz-appearance: textfield;
     }
 
     &.is-error {

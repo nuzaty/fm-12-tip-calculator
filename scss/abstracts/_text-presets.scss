@@ -47,7 +47,7 @@ $text-presets: (
 @mixin text-preset($key) {
   $preset: map.get($text-presets, $key);
 
-  @if $preset == null {
+  @if not $preset {
     @error "Unknown text preset: #{$key}";
   }
 
