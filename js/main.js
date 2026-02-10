@@ -1,4 +1,3 @@
-const SAFE_DELAY_MS = 50;
 const MAX_BILL = 9999999.99;
 const MAX_PERCENT = 100.00;
 const MAX_PEOPLE = 999;
@@ -9,20 +8,21 @@ const CUSTOM_TIP_RADIO_VALUE = 'custom';
 
 const customTipBtn = document.querySelector('.tip-selector__custom');
 const customTipRadio = customTipBtn.querySelector('.tip-selector__radio');
+const customTipRadioInput = customTipRadio.querySelector('input');
 const customTipField = document.getElementById('custom-tip');
 const fixedTipRadios = document.querySelectorAll('.tip-selector__grid > .tip-selector__radio');
 
 function clearTipSelection() {
-  customTipRadio.querySelector('input').checked = false;
+  customTipRadioInput.checked = false;
   fixedTipRadios.forEach(r => r.querySelector('input').checked = false);
 }
 
 customTipRadio.addEventListener('change', (e) => {
   if (e.target.checked) {
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       customTipField.focus();
-      updateTip();
-    }, SAFE_DELAY_MS);
+    });
+    updateTip();
   }
 });
 
@@ -35,10 +35,10 @@ fixedTipRadios.forEach(el => {
 });
 
 setupDecimalInput(customTipField, {
-  locale: LOCALE,
   min: 0,
   max: MAX_PERCENT,
   decimals: 2,
+  maxDigits: 3, // 100%
   suffix: '%',
   trimTrailingZeros: true,
   onChange: updateTip,
@@ -53,18 +53,18 @@ const billInput = document.getElementById('bill');
 const peopleInput = document.getElementById('people');
 
 setupDecimalInput(billInput, {
-  locale: LOCALE,
   min: 0,
   max: MAX_BILL,
   decimals: 2,
+  maxDigits: 7, // 9,999,999
   onChange: updateTip
 });
 
 setupDecimalInput(peopleInput, {
-  locale: LOCALE,
   min: 0,
   max: MAX_PEOPLE,
   decimals: 0,
+  maxDigits: 3, // 999
   trimTrailingZeros: true,
   onChange: updateTip
 });
@@ -104,10 +104,12 @@ function getInputValue() {
 function calculateTip() {
   const { bill, tipPercent, people } = getInputValue();
 
-  if (!bill
-    || !tipPercent
-    || !people
-    || people === 0) {
+  if (
+    isInvalidNumber(bill) ||
+    isInvalidNumber(tipPercent) ||
+    isInvalidNumber(people) ||
+    people === 0
+  ) {
     return { tipPerPerson: 0, totalPerPerson: 0 };
   }
 
@@ -159,17 +161,9 @@ const resetBtn = document.querySelector('.results__reset');
 function updateResetState() {
   const { bill, tipPercent, people } = getInputValue();
 
-  function isInvalid(value) {
-    return (
-      value === null ||
-      value === undefined ||
-      Number.isNaN(value)
-    );
-  }
-
-  resetBtn.disabled = isInvalid(bill)
-    && isInvalid(tipPercent)
-    && isInvalid(people);
+  resetBtn.disabled = isInvalidNumber(bill)
+    && isInvalidNumber(tipPercent)
+    && isInvalidNumber(people);
 }
 
 form.addEventListener('input', updateResetState);
@@ -183,6 +177,15 @@ updateResetState();
 
 /* Utility logic / function */
 
+
+function isInvalidNumber(value) {
+  return (
+    value === null ||
+    value === undefined ||
+    Number.isNaN(value)
+  );
+}
+
 const { groupSep, decimalSep } = (() => {
   const parts = new Intl.NumberFormat(LOCALE).formatToParts(1234.5);
   const groupSep = parts.find(p => p.type === 'group')?.value || '';
@@ -191,10 +194,10 @@ const { groupSep, decimalSep } = (() => {
 })();
 
 function setupDecimalInput(input, {
-  locale = navigator.language,
   min = -Infinity,
   max = Infinity,
   decimals = 2,
+  maxDigits = Infinity,
   trimTrailingZeros = false,
   suffix = '',
   onChange = null,
@@ -208,55 +211,66 @@ function setupDecimalInput(input, {
   }
 
   function normalize(value) {
-    value = value.replace(suffix, '');
-    value = value.replace(/[.,]/g, decimalSep);
+    value = value.replace(suffix, '').trim();
+    value = value.replace(/[^\d.,]/g, '');
 
-    const regex = new RegExp(`[^0-9${decimalSep}]`, 'g');
-    value = value.replace(regex, '');
+    const lastDot = value.lastIndexOf('.');
+    const lastComma = value.lastIndexOf(',');
 
-    const parts = value.split(decimalSep);
-    if (parts.length > 2) {
-      value = parts[0] + decimalSep + parts.slice(1).join('');
+    let decimalChar = null;
+    if (lastDot !== -1 || lastComma !== -1) {
+      decimalChar = lastDot > lastComma ? '.' : ',';
     }
 
-    const [intPart, decPart] = value.split(decimalSep);
-    if (decPart !== undefined) {
-      value = intPart + decimalSep + decPart.slice(0, decimals);
+    if (value === '.' || value === ',') {
+      return decimalSep;
     }
 
-    const hasDecimal = value.includes(decimalSep);
-    if (!hasDecimal) {
-      const numeric = parseFloat(value);
-      if (!isNaN(numeric)) {
-        const clamped = clamp(numeric);
-        if (clamped !== numeric) {
-          value = String(clamped);
-        }
+    if (!decimalChar) {
+      let intPart = value.replace(/[^\d]/g, '');
+
+      if (intPart.length > maxDigits) {
+        intPart = intPart.slice(0, maxDigits);
       }
+
+      return intPart;
     }
 
-    return value;
+    const parts = value.split(decimalChar);
+    let intPart = parts[0].replace(/[^\d]/g, '');
+    let decPart = parts.slice(1).join('').replace(/[^\d]/g, '');
+
+    if (intPart.length > maxDigits) {
+      intPart = intPart.slice(0, maxDigits);
+    }
+
+    decPart = decPart.slice(0, decimals);
+
+    return intPart + decimalSep + decPart;
+  }
+
+  let numberFormat;
+
+  if (trimTrailingZeros) {
+    numberFormat = new Intl.NumberFormat(LOCALE, {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: decimals
+    });
+  } else {
+    numberFormat = new Intl.NumberFormat(LOCALE, {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals
+    });
   }
 
   function format() {
-    num = getNumericValue(input.value, suffix, locale)
-    if (num == null) return;
-    num = clamp(num);
-
-    let formatted;
-
-    if (trimTrailingZeros) {
-      formatted = new Intl.NumberFormat(locale, {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: decimals
-      }).format(num);
-    } else {
-      formatted = new Intl.NumberFormat(locale, {
-        minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals
-      }).format(num);
+    let num = getNumericValue(input.value, suffix)
+    if (num == null) {
+      input.value = '';
+      return;
     }
-
+    num = clamp(num);
+    const formatted = numberFormat.format(num);
     input.value = formatted + suffix;
   }
 
