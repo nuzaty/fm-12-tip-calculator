@@ -9,10 +9,19 @@
   align-items: center;
   padding-inline: $space-300;
 
+  @include from-tablet {
+    min-height: 18.75rem; // match Figma
+    padding-inline: $space-600;
+  }
+
   &__list {
     display: flex;
     flex-direction: column;
     gap: $space-300;
+
+    @include from-tablet {
+      gap: $space-100;
+    }
   }
 
   &__item {
@@ -36,6 +45,10 @@
   &__value {
     @include text-preset(2);
     color: $color-green-400;
+
+    @include from-tablet {
+      @include text-preset(1);
+    }
   }
 
   &__reset {
@@ -50,6 +63,10 @@
     margin-top: $space-400;
     cursor: pointer;
     text-transform: uppercase;
+
+    @include from-tablet {
+      margin-top: $space-200;
+    }
 
     &:hover {
       background: $color-green-200;

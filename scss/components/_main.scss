@@ -1,0 +1,20 @@
+@use '../abstracts' as *;
+
+main {
+  width: 100%;
+  margin-inline: auto;
+  max-width: $content-max-width;
+  padding-inline: 0;
+  padding-top: $space-500;
+
+  @include from-tablet {
+    // 80px @ 768px to 260px @ 1440px (From Figma)
+    padding-inline: clamp($space-1000, -7.857rem + 26.786vw, 16.25rem);
+    padding-bottom: $space-1000;
+  }
+
+  @include from-desktop {
+    // 80px @ 1024px to 260px @ 1440px (From Figma)
+    padding-inline: clamp($space-1000, -22.692rem + 43.269vw, 16.25rem);
+  }
+}

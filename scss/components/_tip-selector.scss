@@ -10,6 +10,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: $space-200;
+
+    @include from-tablet {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 
   &__radio {

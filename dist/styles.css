@@ -61,8 +61,26 @@ body {
 
 .logo {
   margin-top: 3.125rem;
-  margin-bottom: 2.5rem;
   margin-inline: auto;
+}
+
+main {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 90rem;
+  padding-inline: 0;
+  padding-top: 2.5rem;
+}
+@media (min-width: 48rem) {
+  main {
+    padding-inline: clamp(5rem, -7.857rem + 26.786vw, 16.25rem);
+    padding-bottom: 5rem;
+  }
+}
+@media (min-width: 64rem) {
+  main {
+    padding-inline: clamp(5rem, -22.692rem + 43.269vw, 16.25rem);
+  }
 }
 
 .calculator {
@@ -72,16 +90,35 @@ body {
   padding-inline: 1.5rem;
   border-radius: 1.5625rem 1.5625rem 0px 0px;
 }
+@media (min-width: 48rem) {
+  .calculator {
+    border-radius: 1.5625rem;
+    box-shadow: 0px 32px 43px rgba(79, 166, 175, 0.200735);
+    padding-block: 3.375rem;
+    padding-inline: 4.719rem;
+  }
+}
 .calculator__form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+@media (min-width: 48rem) {
+  .calculator__form {
+    gap: 2.5rem;
+  }
 }
 .calculator__controls {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin-inline: 0.5rem;
+}
+@media (min-width: 48rem) {
+  .calculator__controls {
+    gap: 1.5rem;
+    margin-inline: 0;
+  }
 }
 
 .field {
@@ -172,6 +209,11 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
+@media (min-width: 48rem) {
+  .tip-selector__grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 .tip-selector__radio {
   /* base (mobile) */
   font-family: "Space Mono", monospace;
@@ -241,10 +283,21 @@ body {
   align-items: center;
   padding-inline: 1.5rem;
 }
+@media (min-width: 48rem) {
+  .results {
+    min-height: 18.75rem;
+    padding-inline: 3rem;
+  }
+}
 .results__list {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+@media (min-width: 48rem) {
+  .results__list {
+    gap: 0.5rem;
+  }
 }
 .results__item {
   display: flex;
@@ -284,6 +337,18 @@ body {
   /* desktop override (optional) */
   color: hsl(172, 67%, 45%);
 }
+@media (min-width: 48rem) {
+  .results__value {
+    /* base (mobile) */
+    font-family: "Space Mono", monospace;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.4792;
+    letter-spacing: -0.02083em;
+    /* tablet override (optional) */
+    /* desktop override (optional) */
+  }
+}
 .results__reset {
   /* base (mobile) */
   font-family: "Space Mono", monospace;
@@ -302,6 +367,11 @@ body {
   margin-top: 2rem;
   cursor: pointer;
   text-transform: uppercase;
+}
+@media (min-width: 48rem) {
+  .results__reset {
+    margin-top: 1rem;
+  }
 }
 .results__reset:hover {
   background: hsl(173, 61%, 77%);

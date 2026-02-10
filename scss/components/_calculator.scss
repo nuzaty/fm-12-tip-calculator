@@ -2,16 +2,29 @@
 
 .calculator {
   $border-radius-size: 1.5625rem; // match Figma
+
   background: $color-white;
   flex: 1;
   padding-block: $space-400;
   padding-inline: $space-300;
   border-radius: $border-radius-size $border-radius-size 0px 0px;
 
+  @include from-tablet {
+    border-radius: $border-radius-size;
+    box-shadow: 0px 32px 43px rgba(79, 166, 175, 0.200735); // match Figma
+
+    padding-block: 3.375rem; // match Figma
+    padding-inline: 4.719rem; // match Figma
+  }
+
   &__form {
     display: flex;
     flex-direction: column;
     gap: $space-400;
+
+    @include from-tablet {
+      gap: $space-500;
+    }
   }
 
   &__controls {
@@ -19,5 +32,10 @@
     flex-direction: column;
     gap: $space-400;
     margin-inline: $space-100;
+
+    @include from-tablet {
+      gap: $space-300;
+      margin-inline: 0;
+    }
   }
 }
