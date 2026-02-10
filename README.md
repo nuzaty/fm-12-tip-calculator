@@ -12,12 +12,13 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./screenshot/desktop.webp)
+![](./screenshot/mobile.webp)
 
 ### Links
 
-- Solution URL:
-- Live Site URL:
+- Solution URL: [https://www.frontendmentor.io/solutions/tip-calculator-app-using-sass-ZwvGFmHw1x](https://www.frontendmentor.io/solutions/tip-calculator-app-using-sass-ZwvGFmHw1x)
+- Live Site URL: [https://nuzaty.github.io/fm-12-tip-calculator/](https://nuzaty.github.io/fm-12-tip-calculator/)
 
 ### Built with
 
