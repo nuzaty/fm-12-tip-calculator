@@ -131,8 +131,16 @@ const moneyFormat = new Intl.NumberFormat(LOCALE, {
 
 function updateTip() {
   const { tipPerPerson: tipPP, totalPerPerson: totalPP } = calculateTip();
-  tipPerPerson.value = `$${moneyFormat.format(tipPP)}`;
-  totalPerPerson.value = `$${moneyFormat.format(totalPP)}`;
+
+  function setOutput(el, val) {
+    let formatted = moneyFormat.format(val);
+    el.value = `$${formatted}`;
+    el.title = `$${formatted}`;
+    el.setAttribute('aria-label', `$${formatted}`);
+  }
+
+  setOutput(tipPerPerson, tipPP);
+  setOutput(totalPerPerson, totalPP);
 }
 
 

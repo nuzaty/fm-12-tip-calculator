@@ -143,6 +143,7 @@ main {
     justify-content: center;
     gap: 2.5rem;
     width: 45.12%;
+    min-width: 45.12%;
   }
 }
 
@@ -272,7 +273,11 @@ main {
   position: absolute;
   opacity: 0;
 }
+.tip-selector__custom {
+  min-width: 0;
+}
 .tip-selector__custom .tip-selector__radio {
+  overflow: hidden;
   background: hsl(189, 47%, 97%);
   color: hsl(180, 18%, 40%);
 }
@@ -285,7 +290,7 @@ main {
 }
 .tip-selector__custom .field__input {
   text-align: center;
-  padding-inline: 1rem;
+  padding-inline: 0;
   background: hsl(172, 67%, 45%);
   color: hsl(183, 100%, 15%);
   border-radius: 0.3125rem;
@@ -306,7 +311,7 @@ main {
   min-height: 16rem;
   display: grid;
   align-items: center;
-  padding-inline: 1.5rem;
+  padding: 1.5rem;
 }
 @media (min-width: 48rem) {
   .results {
@@ -320,6 +325,9 @@ main {
     min-height: 26.0625rem;
     padding-inline: 2.5rem;
   }
+}
+.results__panel {
+  min-width: 0;
 }
 .results__list {
   display: flex;
@@ -340,6 +348,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .results__label {
   /* base (mobile) */
@@ -352,6 +361,7 @@ main {
   display: flex;
   flex-direction: column;
   color: hsl(0, 100%, 100%);
+  flex-shrink: 0;
 }
 .results__sublabel {
   /* base (mobile) */
@@ -373,6 +383,10 @@ main {
   /* tablet override (optional) */
   /* desktop override (optional) */
   color: hsl(172, 67%, 45%);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-left: auto;
 }
 @media (min-width: 48rem) {
   .results__value {
@@ -385,6 +399,10 @@ main {
     /* tablet override (optional) */
     /* desktop override (optional) */
   }
+}
+.results__value output {
+  user-select: all;
+  cursor: text;
 }
 .results__reset {
   /* base (mobile) */

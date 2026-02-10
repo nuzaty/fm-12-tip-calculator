@@ -49,7 +49,10 @@
   }
 
   &__custom {
+    min-width: 0;
+
     .tip-selector__radio {
+      overflow: hidden;
       background: $color-grey-50;
       color: $color-grey-550;
 
@@ -64,7 +67,7 @@
 
       &__input {
         text-align: center;
-        padding-inline: $space-200;
+        padding-inline: 0;
         background: $color-green-400;
         color: $color-green-900;
         border-radius: $input-border-radius;

@@ -7,7 +7,7 @@
 
   display: grid;
   align-items: center;
-  padding-inline: $space-300;
+  padding: $space-300;
 
   @include from-tablet {
     min-height: 18.75rem; // match Figma
@@ -18,6 +18,10 @@
     flex: 1;
     min-height: 26.0625rem;
     padding-inline: $space-500;
+  }
+
+  &__panel {
+    min-width: 0;
   }
 
   &__list {
@@ -38,6 +42,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   &__label {
@@ -45,6 +50,7 @@
     display: flex;
     flex-direction: column;
     color: $color-white;
+    flex-shrink: 0;
   }
 
   &__sublabel {
@@ -55,9 +61,18 @@
   &__value {
     @include text-preset(2);
     color: $color-green-400;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: auto;
 
     @include from-tablet {
       @include text-preset(1);
+    }
+
+    output {
+      user-select: all;
+      cursor: text;
     }
   }
 
