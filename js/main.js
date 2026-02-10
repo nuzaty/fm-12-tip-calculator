@@ -182,8 +182,6 @@ const { groupSep, decimalSep } = (() => {
   return { groupSep, decimalSep };
 })();
 
-console.log(decimalSep);
-
 function setupDecimalInput(input, {
   locale = navigator.language,
   min = -Infinity,
@@ -202,11 +200,8 @@ function setupDecimalInput(input, {
   }
 
   function normalize(value) {
-    console.log('before value', value);
-    // value = value.replace(suffix, '');
+    value = value.replace(suffix, '');
     value = value.replace(/[.,]/g, decimalSep);
-
-    console.log('after value', value);
 
     const regex = new RegExp(`[^0-9${decimalSep}]`, 'g');
     value = value.replace(regex, '');
